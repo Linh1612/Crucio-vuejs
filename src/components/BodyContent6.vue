@@ -4,7 +4,7 @@
       <h2>OUR TEAM</h2>
       <hr />
     </div>
-    <div class="team">
+    <div class="team" v-if="onShow() && show">
       <div
         :class="content6Item.parent"
         v-for="content6Item in content6Items"
@@ -39,6 +39,8 @@
 export default {
   data() {
     return {
+      show: false,
+      windowTop: 0,
       content6Items: [
         {
           id: 61,
@@ -78,6 +80,22 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll(e) {
+      this.windowTop = e.target.documentElement.scrollTop;
+    },
+    onShow() {
+      if (this.show) return true;
+      if (this.windowTop > 2960) {
+        this.show = true;
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>

@@ -4,30 +4,45 @@
       <h2>OUR PORTFOLIO</h2>
       <hr />
     </div>
-    <div class="taskbar">
+    <!-- <div class="taskbar">
       <ul>
-        <li><a href="#all">All</a></li>
+        <li><a href="#all" @click="type = 'all'">All</a></li>
         <li><a href="#graphicDesign">Graphic Design</a></li>
         <li><a href="#webDesign">Web Design</a></li>
         <li><a href="#webDevelopment">Web Development</a></li>
       </ul>
+    </div> -->
+    <div className="taskbar">
+      <ul>
+        <li v-for="(item, index) in listTag" :key="index">
+          <a :href="'#' + item" @click="type = item"> {{ titleTag[index] }} </a>
+        </li>
+      </ul>
     </div>
-    <div class="works">
+    <div class="works" v-if="onShow() && show">
       <div
-        :class="content8Item.parent"
-        v-for="content8Item in content8Items"
-        :key="content8Item.id"
+        :class="content8Items[index].parent"
+        v-for="index in detailImg[type]"
+        :key="index"
       >
-        <div :class="content8Item.father">
-          <div :class="content8Item.children">
-            <h2>{{ content8Item.headline }}</h2>
-            <p>{{ content8Item.paragraph }}</p>
+        <div :class="content8Items[index].father">
+          <div :class="content8Items[index].children">
+            <h2>{{ content8Items[index].headline }}</h2>
+            <p>{{ content8Items[index].paragraph }}</p>
+          </div>
+        </div>
+      </div>
+      <div v-if="!hidden" :class="content8Items[8].parent">
+        <div :class="content8Items[8].father">
+          <div :class="content8Items[8].children">
+            <h2>{{ content8Items[8].headline }}</h2>
+            <p>{{ content8Items[8].paragraph }}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="bg-btn">
-      <button class="btn">LOAD MORE</button>
+    <div v-if="hidden" class="bg-btn">
+      <button @click="hidden = !hidden" class="btn">LOAD MORE</button>
     </div>
   </div>
 </template>
@@ -36,6 +51,19 @@
 export default {
   data() {
     return {
+      type: "all",
+      show: false,
+      listTag: ["all", "graphicDesign", "webDesign", "webDevelopment"],
+      titleTag: ["All", "Graphic Design", "Web Design", "Web Development"],
+      windowTop: 0,
+      hidden: true,
+      moreImg: [8],
+      detailImg: {
+        all: [0, 1, 2, 3, 4, 5, 6, 7],
+        graphicDesign: [2, 5, 6, 7],
+        webDesign: [0, 3, 4, 5, 6],
+        webDevelopment: [1, 3],
+      },
       content8Items: [
         {
           id: 81,
@@ -102,16 +130,32 @@ export default {
           paragraph: "Project Description",
         },
 
-        // {
-        //   id: 89,
-        //   parent: "work-9 rightToCenter",
-        //   father: "bg-9",
-        //   children: "work-info",
-        //   headline: "Project #9",
-        //   paragraph: "Project Description",
-        // },
+        {
+          id: 89,
+          parent: "work-9 rightToCenter",
+          father: "bg-9",
+          children: "work-info",
+          headline: "Project #9",
+          paragraph: "Project Description",
+        },
       ],
     };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll(e) {
+      this.windowTop = e.target.documentElement.scrollTop;
+    },
+    onShow() {
+      if (this.show) return true;
+      if (this.windowTop > 4320) {
+        this.show = true;
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>

@@ -14,6 +14,7 @@
     <body-content-12 />
     <body-content-13 />
     <body-content-14 />
+    <top-up />
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import BodyContent11 from "./BodyContent11.vue";
 import BodyContent12 from "./BodyContent12.vue";
 import BodyContent13 from "./BodyContent13.vue";
 import BodyContent14 from "./BodyContent14.vue";
+import TopUp from "./TopUp.vue";
 
 export default {
   name: "App",
@@ -50,6 +52,7 @@ export default {
     BodyContent12,
     BodyContent13,
     BodyContent14,
+    TopUp,
   },
 };
 </script>

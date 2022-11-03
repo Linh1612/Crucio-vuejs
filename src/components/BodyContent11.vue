@@ -3,25 +3,62 @@
     <div class="text-center">
       <h3>TESTIMONIALS</h3>
       <hr />
-      <p>
+      <!-- <p>
         Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod
         tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea
         commodi consequat. Quis aute iure reprehenderit in voluptate velit esse
         cillum dolore eu fugiat nulla pariatur.
       </p>
-      <p><i>-Jim P.-</i></p>
-      <ssr-carousel>
-        <slide :index="1"></slide>
-        <slide :index="2"></slide>
-        <slide :index="3"></slide>
-      </ssr-carousel>
+      <p><i>-Jim P.-</i></p> -->
+      <div
+        :class="content11Item.className"
+        v-for="content11Item in content11Items"
+        :key="content11Item.id"
+        @click="checkClass"
+      >
+        <p>
+          {{ content11Item.value }}
+        </p>
+        <p>
+          <i>{{ content11Items.name }}</i>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      content11Items: [
+        {
+          id: 0,
+          value:
+            "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          name: "- Jim P. -",
+          className: "visible",
+        },
+        {
+          id: 1,
+          value:
+            "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          name: "- John K. -",
+          className: "hidden",
+        },
+        {
+          id: 2,
+          value:
+            "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          name: "- Morgan F. -",
+          className: "hidden",
+        },
+      ],
+    };
+  },
+  methods: {},
+};
 </script>
 
 <style scoped>
@@ -54,12 +91,20 @@ export default {};
   margin-bottom: 2rem;
 }
 
-.body-content11 > .text-center p {
+.body-content11 > .text-center > div > p {
   padding: 0 10rem;
   font-family: "Open Sans", sans-serif;
   color: rgb(222, 222, 222);
   line-height: 1.8;
   padding-bottom: 1rem;
   font-size: 1rem;
+}
+
+.body-content11 > .text-center > .hidden {
+  opacity: 0;
+}
+
+.body-content11 > .text-center > .visible {
+  opacity: 1;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="body-content5">
-    <div class="title-btn">
+    <div class="title-btn" v-if="onShow() && show">
       <h2 class="leftToCenter">WE CREATE <strong>AWESOME</strong> PROJECTS</h2>
       <button class="bottomToTop">GET STARTED</button>
     </div>
@@ -8,7 +8,30 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      show: false,
+      windowTop: 0,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll(e) {
+      this.windowTop = e.target.documentElement.scrollTop;
+    },
+    onShow() {
+      if (this.show) return true;
+      if (this.windowTop > 2250) {
+        this.show = true;
+        return true;
+      }
+      return false;
+    },
+  },
+};
 </script>
 
 <style scoped>

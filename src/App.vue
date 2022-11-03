@@ -10,7 +10,6 @@ import Body from "./components/Body.vue";
 import "animate.css";
 import "./assets/styles/global.css";
 import Footer from "./components/Footer.vue";
-
 export default {
   name: "App",
   components: {

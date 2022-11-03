@@ -111,22 +111,6 @@ export default {};
   color: white;
 }
 
-.header-content2
-  > .navbar-collapse
-  > .navbar-nav
-  > .nav-item
-  > .nav-link:hover {
-  color: var(--primary-color);
-}
-
-.header-content2
-  > .navbar-collapse
-  > .navbar-nav
-  > .nav-item
-  > .nav-link:focus {
-  color: #56007f;
-}
-
 .content-arrow {
   width: 3rem;
   height: 3rem;

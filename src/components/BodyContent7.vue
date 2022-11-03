@@ -5,8 +5,10 @@
       v-for="content7Item in content7Items"
       :key="content7Item.id"
     >
-      <h3 :class="content7Item.count"></h3>
-      <h4>{{ content7Item.paragraph }}</h4>
+      <div v-if="onShow() && show">
+        <h3 :class="content7Item.count"></h3>
+        <h4>{{ content7Item.paragraph }}</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +17,8 @@
 export default {
   data() {
     return {
+      show: false,
+      windowTop: 0,
       content7Items: [
         {
           id: 71,
@@ -43,6 +47,22 @@ export default {
       ],
     };
   },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll(e) {
+      this.windowTop = e.target.documentElement.scrollTop;
+    },
+    onShow() {
+      if (this.show) return true;
+      if (this.windowTop > 3612) {
+        this.show = true;
+        return true;
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -62,7 +82,7 @@ export default {
   width: 25%;
 }
 
-.body-content7 > .parameter h3 {
+.body-content7 > .parameter div h3 {
   padding-bottom: 2rem;
   font-size: 3rem;
   font-weight: 400;
