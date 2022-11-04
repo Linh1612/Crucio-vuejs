@@ -34,7 +34,6 @@ import BodyContent12 from "./BodyContent12.vue";
 import BodyContent13 from "./BodyContent13.vue";
 import BodyContent14 from "./BodyContent14.vue";
 import TopUp from "./TopUp.vue";
-
 export default {
   name: "App",
   components: {

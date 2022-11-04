@@ -20,6 +20,7 @@ export default {};
 .body-content1 {
   height: 45rem;
   background-color: rgb(11, 11, 11);
+  overflow: hidden;
 }
 
 .body-content1 > .text-center {

@@ -11,25 +11,15 @@
         cillum dolore eu fugiat nulla pariatur.
       </p>
       <p><i>-Jim P.-</i></p> -->
-      <div
-        :class="content11Item.className"
-        v-for="content11Item in content11Items"
-        :key="content11Item.id"
-        @click="checkClass"
-      >
-        <p>
-          {{ content11Item.value }}
-        </p>
-        <p>
-          <i>{{ content11Items.name }}</i>
-        </p>
-      </div>
+      <slider />
     </div>
   </div>
 </template>
 
 <script>
+import Slider from "./Slider.vue";
 export default {
+  components: { Slider },
   data() {
     return {
       content11Items: [
@@ -98,13 +88,5 @@ export default {
   line-height: 1.8;
   padding-bottom: 1rem;
   font-size: 1rem;
-}
-
-.body-content11 > .text-center > .hidden {
-  opacity: 0;
-}
-
-.body-content11 > .text-center > .visible {
-  opacity: 1;
 }
 </style>
